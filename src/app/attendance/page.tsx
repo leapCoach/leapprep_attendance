@@ -87,66 +87,62 @@ function AttendanceContent() {
         </div>
       )}
 
-      <div className="grid gap-6 lg:grid-cols-3">
-        <div className="lg:col-span-1 space-y-6">
-          <div className="space-y-4">
-            <h2 className="text-lg font-semibold">Date & Settings</h2>
-            <DateSelector
-              selectedDate={selectedDate}
-              onDateChange={setSelectedDate}
-            />
-          </div>
-
+      <div className="flex flex-wrap items-start gap-4 mb-6">
+        <div className="flex-1 min-w-[200px] max-w-sm">
+          <DateSelector
+            selectedDate={selectedDate}
+            onDateChange={setSelectedDate}
+          />
+        </div>
+        <div className="flex-1 min-w-[300px]">
           <NotificationToggle
             onSendUnnotified={handleSendUnnotified}
             sendLoading={sendNotificationsLoading}
           />
         </div>
+      </div>
 
-        <div className="lg:col-span-2">
-          <Tabs defaultValue="checkin" className="space-y-4">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="checkin" className="flex items-center gap-2">
-                <Clock className="h-4 w-4" />
-                Check-In ({checkins.length})
-              </TabsTrigger>
-              <TabsTrigger value="checkout" className="flex items-center gap-2">
-                <Clock className="h-4 w-4" />
-                Check-Out ({checkouts.length})
-              </TabsTrigger>
-            </TabsList>
+      <div className="w-full">
+        <Tabs defaultValue="checkin" className="space-y-4">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="checkin" className="flex items-center gap-2">
+              <Clock className="h-4 w-4" />
+              Check-In ({checkins.length})
+            </TabsTrigger>
+            <TabsTrigger value="checkout" className="flex items-center gap-2">
+              <Clock className="h-4 w-4" />
+              Check-Out ({checkouts.length})
+            </TabsTrigger>
+          </TabsList>
 
-            <TabsContent value="checkin" className="space-y-4">
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Check-In Records</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  All check-in records for the selected date
-                </p>
-              </div>
-              <AttendanceTable
-                records={checkins}
-                type="checkin"
-                loading={loading}
-              />
-            </TabsContent>
+          <TabsContent value="checkin" className="space-y-4">
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Check-In Records</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                All check-in records for the selected date
+              </p>
+            </div>
+            <AttendanceTable
+              records={checkins}
+              type="checkin"
+              loading={loading}
+            />
+          </TabsContent>
 
-            <TabsContent value="checkout" className="space-y-4">
-              <div>
-                <h3 className="text-lg font-semibold mb-2">
-                  Check-Out Records
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  All check-out records for the selected date
-                </p>
-              </div>
-              <AttendanceTable
-                records={checkouts}
-                type="checkout"
-                loading={loading}
-              />
-            </TabsContent>
-          </Tabs>
-        </div>
+          <TabsContent value="checkout" className="space-y-4">
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Check-Out Records</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                All check-out records for the selected date
+              </p>
+            </div>
+            <AttendanceTable
+              records={checkouts}
+              type="checkout"
+              loading={loading}
+            />
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
