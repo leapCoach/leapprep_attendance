@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate-types": "npx supabase gen types typescript --project-id jmacxejewzrpazdndghk > src/types/supabase.ts"
+    "generate-types": "npx supabase gen types typescript --project-id jmacxejewzrpazdndghk > src/types/supabase.ts",
+    "pull-seed": "supabase db dump --data-only > supabase/seed.sql"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
